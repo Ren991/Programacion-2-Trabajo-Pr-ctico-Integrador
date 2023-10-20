@@ -2,13 +2,86 @@ from Estudiante import *
 from Profesor import *
 from Usuario import *
 
-#prueba git 
+alumnos = [
+    {
+        "mail": "pepe@123",
+        "contrasenia": "1234"
+    },
+    {
+        "mail": "coco@321",
+        "contrasenia": "4321"
+    }
+]
+
+def autenticar_alumno():
+    emailUser = input("Ingrese mail por favor: ")
+    encontrado = False  
+
+    for alumno in alumnos:
+        if alumno["mail"] == emailUser:
+            contraseniaUser = input("Ahora ingrese la contraseña: ")
+            if contraseniaUser == alumno["contrasenia"]:
+                ingresar_como_alumno()
+                encontrado = True  
+                break  
+            else:
+                print("Contraseña incorrecta")
+                encontrado = True  
+                break  
+
+    if not encontrado:
+        print("Mail inválido")
 
 
 
+def ingresar_como_alumno():
+    while True:
+        print("\nSubmenú de Alumno:")
+        print("1. Matricularse a un curso")
+        print("2. Ver curso")
+        print("3. Volver al menú principal")
 
-estudiante1 = Estudiantes("Casiano", "Almeida", "cas@hol", "contra", 1234, 2022)
-print(estudiante1)
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            print("Matriculando a un curso...")
+        elif opcion == "2":
+            print("Viendo curso...")
+        elif opcion == "3":
+            print("Volviendo al menú principal...")
+            break
+        else:
+            print("Opción no válida. Por favor, seleccione una opción válida.")
+
+def main_menu():
+    while True:
+        print("\nMenú de Usuario:")
+        print("1. Ingresar como alumno")
+        print("2. Ingresar como profesor")
+        print("3. Ver cursos")
+        print("4. Salir")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            autenticar_alumno()
+        elif opcion == "2":
+            print("Ingresaste como profesor")
+            
+        elif opcion == "3":
+            print("Lista de cursos:")
+            
+        elif opcion == "4":
+            print("Saliendo del menú...")
+            break
+        else:
+            print("Opción no válida. Por favor, seleccione una opción válida.")
+
+
+main_menu()
+
+
+
 
 
 
