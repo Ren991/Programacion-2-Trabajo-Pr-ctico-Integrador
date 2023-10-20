@@ -13,26 +13,59 @@ alumnos = [
     }
 ]
 
-def autenticar_alumno():
+profesores = [
+    {
+        "mail": "pepe",
+        "contrasenia": "1234"
+    },
+    {
+        "mail": "coco",
+        "contrasenia": "568"
+    }
+]
+
+""""AUTENTICACION USUARIO"""
+def autenticar_usuario(opcion):
     emailUser = input("Ingrese mail por favor: ")
     encontrado = False  
 
-    for alumno in alumnos:
-        if alumno["mail"] == emailUser:
-            contraseniaUser = input("Ahora ingrese la contraseña: ")
-            if contraseniaUser == alumno["contrasenia"]:
-                ingresar_como_alumno()
-                encontrado = True  
-                break  
-            else:
-                print("Contraseña incorrecta")
-                encontrado = True  
-                break  
+    if opcion == "1":     
+        
 
-    if not encontrado:
-        print("Mail inválido")
+        for alumno in alumnos:
+            if alumno["mail"] == emailUser:
+                contraseniaUser = input("Ahora ingrese la contraseña: ")
+                if contraseniaUser == alumno["contrasenia"]:
+                    ingresar_como_alumno()
+                    encontrado = True  
+                    break  
+                else:
+                    print("Contraseña incorrecta")
+                    encontrado = True  
+                    break  
 
+            
+    elif opcion == "2":
+        
 
+        for profesor in profesores:
+            if profesor["mail"] == emailUser:
+                contraseniaUser = input("Ahora ingrese la contraseña: ")
+                if contraseniaUser == profesor["contrasenia"]:
+                    ingresar_como_profesor()
+                    encontrado = True  
+                    break  
+                else:
+                    print("Contraseña incorrecta")
+                    encontrado = True  
+                    break  
+
+        if not encontrado:
+            print("Mail inválido")
+
+""""FIN AUTENTICACION USUARIO"""
+
+""""INGRESO COMO ALUMNO"""
 
 def ingresar_como_alumno():
     while True:
@@ -53,6 +86,34 @@ def ingresar_como_alumno():
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
 
+
+""""FIN INGRESO COMO ALUMNO"""
+
+
+"""INGRESO COMO PROFESOR"""
+def ingresar_como_profesor():
+    while True:
+        print("\nSubmenú de Profesor:")
+        print("1. Dictar curso")
+        print("2. Ver curso")
+        print("3. Volver al menú principal")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            print("Dictar un curso...")
+        elif opcion == "2":
+            print("Viendo curso...")
+        elif opcion == "3":
+            print("Volviendo al menú principal...")
+            break
+        else:
+            print("Opción no válida. Por favor, seleccione una opción válida.")
+
+
+""""FIN INGRESO COMO PROFESOR"""
+
+
 def main_menu():
     while True:
         print("\nMenú de Usuario:")
@@ -64,9 +125,9 @@ def main_menu():
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            autenticar_alumno()
+            autenticar_usuario(opcion)
         elif opcion == "2":
-            print("Ingresaste como profesor")
+            autenticar_usuario(opcion)
             
         elif opcion == "3":
             print("Lista de cursos:")
@@ -76,7 +137,6 @@ def main_menu():
             break
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
-
 
 main_menu()
 
