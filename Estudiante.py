@@ -11,8 +11,7 @@ class Estudiantes(Usuarios):
     def __str__(self):
         return f"Estudiante: Nombre: {self.nombre}, Apellido: {self.apellido}, Email: {self.email}, Legajo: {self.num_legajo}, Año de inscripción: {self.anio_inscripcion_carrera}"
     
-    def matricular_en_curso(self, curso: str):
-        self.curso = curso
-    
+    def matricular_en_curso(self, matricular_curso: str):
+        self.matricular_curso = matricular_curso
    
   
