@@ -2,67 +2,33 @@ from Estudiante import *
 from Profesor import *
 from Usuario import *
 
-alumnos = [
-    {
-        "mail": "pepe@123",
-        "contrasenia": "1234"
-    },
-    {
-        "mail": "coco@321",
-        "contrasenia": "4321"
-    }
+usuarios = [
+    Usuarios("pepe","coco","pepe@123", "1234"),
+    Usuarios("coco","sinApellido","coco@321", "4321"),
+    Usuarios("pipo","hola","pepe", "1234"),
+    Usuarios("prueba","prueba1","coco", "568")
 ]
 
-profesores = [
-    {
-        "mail": "pepe",
-        "contrasenia": "1234"
-    },
-    {
-        "mail": "coco",
-        "contrasenia": "568"
-    }
-]
+
 
 """"AUTENTICACION USUARIO"""
 def autenticar_usuario(opcion):
-    emailUser = input("Ingrese mail por favor: ")
-    encontrado = False  
+    email_input = input("Ingresa tu email: ")
+    contrasenia_input = input("Ingresa tu contraseña: ")
 
-    if opcion == "1":     
+    if opcion == "1":
+        # Buscar al usuario con el correo electrónico proporcionado
+        usuario_encontrado = None
+        for usuario in usuarios:
+            if usuario.validar_credenciales(email_input, contrasenia_input):
+                usuario_encontrado = usuario
+                break
+
+        if usuario_encontrado:
+            print("Credenciales válidas. Acceso concedido.")
+        else:
+            print("Credenciales inválidas. Acceso denegado.")        
         
-
-        for alumno in alumnos:
-            if alumno["mail"] == emailUser:
-                contraseniaUser = input("Ahora ingrese la contraseña: ")
-                if contraseniaUser == alumno["contrasenia"]:
-                    ingresar_como_alumno()
-                    encontrado = True  
-                    break  
-                else:
-                    print("Contraseña incorrecta")
-                    encontrado = True  
-                    break  
-
-            
-    elif opcion == "2":
-        
-
-        for profesor in profesores:
-            if profesor["mail"] == emailUser:
-                contraseniaUser = input("Ahora ingrese la contraseña: ")
-                if contraseniaUser == profesor["contrasenia"]:
-                    ingresar_como_profesor()
-                    encontrado = True  
-                    break  
-                else:
-                    print("Contraseña incorrecta")
-                    encontrado = True  
-                    break  
-
-        if not encontrado:
-            print("Mail inválido")
-
 """"FIN AUTENTICACION USUARIO"""
 
 """"INGRESO COMO ALUMNO"""
