@@ -11,6 +11,8 @@ usuarios = [
 
 
 
+
+
 """"AUTENTICACION USUARIO"""
 def autenticar_usuario(opcion):
     email_input = input("Ingresa tu email: ")
@@ -24,8 +26,9 @@ def autenticar_usuario(opcion):
                 usuario_encontrado = usuario
                 break
 
-        if usuario_encontrado:
-            print("Credenciales válidas. Acceso concedido.")
+        if usuario_encontrado:           
+            print(f'Bienvenido/a {usuario.nombre}!')
+            ingresar_como_alumno()
         else:
             print("Credenciales inválidas. Acceso denegado.")        
         

@@ -10,7 +10,7 @@ class Usuarios(ABC):
         self.__contrasenia = contrasenia
     
     def __str__(self):
-        pass
+        return f" Nombre: {self._nombre}, Apellido: {self._apellido}, Email: {self._email}"
 
     @property
     def nombre(self):
