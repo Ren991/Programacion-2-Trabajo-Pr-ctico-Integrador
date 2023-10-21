@@ -94,7 +94,7 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
         if opcion == "1":
             matricular_a_curso(usuario)
         elif opcion == "2":
-            print("Viendo curso...")
+            mostrar_cursos(usuario)
         elif opcion == "3":
             print("Volviendo al menú principal...")
             break
@@ -140,6 +140,32 @@ def matricular_a_curso(usuario):
             print("Opción no válida. Por favor, ingrese un número válido.")
 
 
+def mostrar_cursos(usuario):
+    cursos_matriculados = usuario.cursos
+
+    if not cursos_matriculados:
+        print("No estás matriculado en ningún curso.")
+    else:
+        print("Cursos en los que estás matriculado:")
+        for i, curso in enumerate(cursos_matriculados, 1):
+            print(f"{i}. {curso}")
+
+        while True:
+            curso_info = input("Ingrese el número del curso al que desea ver (0 para salir): ")
+            if curso_info.isdigit():
+                curso_seleccionado = int(curso_info)
+                if 1 <= curso_seleccionado <= len(cursos_matriculados):
+                    curso = cursos_matriculados[curso_seleccionado - 1]
+                    print(f"Nombre: {curso}")
+                elif curso_seleccionado == 0:
+                    break
+                else:
+                    print("Opción no válida. Por favor, ingrese un número válido o 0 para salir.")
+            else:
+                print("Opción no válida. Por favor, ingrese un número válido.")
+
+
+        
 
 #----------------FIN FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
 

@@ -23,5 +23,5 @@ class Curso():
         return ''.join(random.choice(passw) for i in range(7))
 
     def __str__(self):
-        return f"Este curso es de {self.nombre}"
+        return f"Este curso es de {self._nombre}"
 
