@@ -1,13 +1,19 @@
 from Usuario import *
+from Curso import *
 
+class Profesor(Usuario):
+    def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str, titulo: str, anio:int):
+        self.__titulo = titulo
+        self.__anio_egreso = anio
+        self.__mis_cursos = []
+        super().__init__(nombre, apellido, email, contrasenia)
 
+    @property
+    def titulo(self):
+        return self.__titulo
+    @property
+    def anio_egreso(self):
+        return self.__anio_egreso
 
-class Profesores(Usuarios):
-   def init(self, nombre:str, apellido:str, email:str, contrasenia:str, titulo: str, anio_egreso: int):
-       super().init(nombre, apellido , email, contrasenia)
-       self.titulo = titulo
-       self.anio_egreso = anio_egreso
-   def str(self):
-        return f"Profesor: Nombre: {self.nombre}, Apellido: {self.apellido}, Email: {self.email}, Legajo: {self.titulo}, Año de inscripción: {self.anio_egreso}"
-   def dictar_curso(self, dictar_curso):
-       self.dictar_curso = dictar_curso
+    def dictar_curso(self, curso: Curso):
+        self.__mis_cursos.append(curso)

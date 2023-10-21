@@ -2,7 +2,7 @@ from abc import ABC
 
 
 
-class Usuarios(ABC):
+class Usuario(ABC):
     def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str):
         self.__nombre = nombre
         self.__apellido = apellido

@@ -1,7 +1,7 @@
 from Usuario import *
 
 
-class Estudiante(Usuarios):
+class Estudiante(Usuario):
     def __init__(self, nombre, apellido, email, contrasenia, legajo, anio_inscripcion_carrera)-> None:
         super().__init__(nombre, apellido, email, contrasenia)
         self.__legajo = legajo
@@ -25,8 +25,8 @@ class Estudiante(Usuarios):
     
     
 
-    def matricular_en_curso(self, curso):        
-        pass
+    def matricular_en_curso(self, curso) -> None:
+        self.cursos.append(curso)
 
 
 
