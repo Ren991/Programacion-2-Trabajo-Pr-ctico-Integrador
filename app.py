@@ -1,6 +1,7 @@
 from Estudiante import *
 from Profesor import *
 from Usuario import *
+from Curso import *
 
 usuarios = [
     Usuarios("pepe","coco","pepe@123", "1234"),
@@ -9,6 +10,32 @@ usuarios = [
     Usuarios("prueba","prueba1","coco", "568")
 ]
 
+cursos = [
+    Curso("Ingles I"),
+    Curso("Ingles II"),
+    Curso("Laboratorio I"),
+    Curso("Laboratorio II"),
+    Curso("Programacion I"),
+    Curso("Programacion II")
+]
+
+for curso in cursos:
+    print(f"Nombre del curso: {curso.nombre}")
+    print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
+
+contrasenia_ingresada = input("Ingresa la contraseña para el curso de Ingles I: ")
+
+
+for curso in cursos:
+    if curso.nombre == "Ingles I":
+        if contrasenia_ingresada == curso.contrasenia_matriculacion:
+            print("Contraseña correcta")
+        else:
+            print("Contraseña incorrecta")
+        break
+else:
+    
+    print("Curso de Química no encontrado.")
 
 
 
@@ -46,7 +73,7 @@ def ingresar_como_alumno():
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Matriculando a un curso...")
+            matricular_a_curso()
         elif opcion == "2":
             print("Viendo curso...")
         elif opcion == "3":
@@ -54,6 +81,30 @@ def ingresar_como_alumno():
             break
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
+
+def matricular_a_curso():
+    cursos_disponibles = cursos 
+
+    print("Cursos disponibles:")
+    for i, curso in enumerate(cursos_disponibles, 1): #Enumerate es un método , crea una tupla para cada elemento, con el índice y el nombre.
+        print(f"{i} {curso.nombre}") # Muestra el índice y el nombre
+
+    while True:
+        cursoIngresado = input("Ingrese el número del curso al que desea matricularse: ")
+        if cursoIngresado.isdigit():
+            cursoIngresado = int(cursoIngresado)
+            if 1 <= cursoIngresado <= len(cursos_disponibles):
+                curso_seleccionado = cursos_disponibles[cursoIngresado - 1]
+                print(f"Ha seleccionado matricularse en {curso_seleccionado.nombre}.")
+                break
+            else:
+                print("Opción no válida. Por favor, ingrese un número válido.")
+        else:
+            print("Opción no válida. Por favor, ingrese un número válido.")
+
+
+matricular_a_curso()
+
 
 
 """"FIN INGRESO COMO ALUMNO"""
