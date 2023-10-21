@@ -28,6 +28,10 @@ class Estudiante(Usuario):
     def matricular_en_curso(self, curso) -> None:
         self.cursos.append(curso)
 
+    def desmatricular_de_curso(self, curso) -> None:    
+        self.cursos.remove(curso)
+       
+
 
 
   

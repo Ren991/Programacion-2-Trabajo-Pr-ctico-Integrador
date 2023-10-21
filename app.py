@@ -3,24 +3,26 @@ from Profesor import *
 from Usuario import *
 from Curso import *
 
-usuarios = [
+usuarios = [ 
     
     Usuario("pipo","hola","pepe", "1234"),
     Usuario("prueba","prueba1","coco", "568")
 ]
 
-estudiantes = [
+
+estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
     Estudiante("Nicolas","Villalba","n@v", "1221",1221,2022),
     Estudiante("Rodrigo", "Diaz", "r@d", "4422", 4422, 2014),
     Estudiante("Casiano","Almeida","coco@321", "4321", 4321, 2011),
     Estudiante("Renzo", "Beccari", "r@c", "1234", 1234, 2023),
 ]
 
-profesores = [
+profesores = [ # => Se Crean 2 Objetos de la clase profesores
     Profesor("Mercedes","Valloni","m@v","m123","ingeniera","2012"),
     Profesor("Prueba","Profesor2","p@p","p123","Tecnico quimico","2022")
 ]
-cursos = [
+
+cursos = [ # => Se Crean 6 Objetos de la clase cursos
     Curso("Ingles I"),
     Curso("Ingles II"),
     Curso("Laboratorio I"),
@@ -39,7 +41,7 @@ for curso in cursos:
 
 def autenticar_usuario(opcion):
     
-    #ESTA FUNCION DEPENDIENDO DE LA OPCION QUE INGRESA EL USUARIO ITERA EN EL ARRAY DE PROFESORES O EN 
+    #ESTA FUNCION DEPENDIENDO DE LA OPCION QUE INGRESA EL USUARIO (1 o 2) ITERA EN ARRAY DE PROFESORES O EN 
     #ARRAY DE ESTUDIANTES
 
     email_input = input("Ingresa tu email: ")
@@ -49,7 +51,7 @@ def autenticar_usuario(opcion):
         # Buscar al usuario con el correo electrónico proporcionado
         usuario_encontrado = None
         for estudiante in estudiantes:
-            if estudiante.validar_credenciales(email_input, contrasenia_input):
+            if estudiante.validar_credenciales(email_input, contrasenia_input):#=> método para validar credenciales, el mismo se hereda de usuario
                 usuario_encontrado = estudiante
                 break
 
@@ -62,7 +64,7 @@ def autenticar_usuario(opcion):
     elif opcion == "2":
         usuario_encontrado = None
         for profesor in profesores:
-            if profesor.validar_credenciales(email_input, contrasenia_input):
+            if profesor.validar_credenciales(email_input, contrasenia_input): #=> método para validar credenciales, el mismo se hereda de usuario
                 usuario_encontrado = profesor
                 break
 
@@ -79,14 +81,14 @@ def autenticar_usuario(opcion):
 
 #-----------------FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
 
-def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante 
-    print(usuario.nombre)
+def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante     
     
     while True:
         print("\nSubmenú de Alumno:")
         print("1. Matricularse a un curso")
-        print("2. Ver curso")
-        print("3. Volver al menú principal")
+        print("2. Desmatricularse a un curso")
+        print("3. Ver curso")
+        print("4. Volver al menú principal")
         print(f"Cursos del usuario = {usuario.cursos}")
 
         opcion = input("Seleccione una opción: ")
@@ -94,8 +96,10 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
         if opcion == "1":
             matricular_a_curso(usuario)
         elif opcion == "2":
-            mostrar_cursos(usuario)
+           desmatricular_de_curso(usuario)
         elif opcion == "3":
+            mostrar_cursos(usuario)
+        elif opcion == "4":
             print("Volviendo al menú principal...")
             break
         else:
@@ -127,7 +131,7 @@ def matricular_a_curso(usuario):
                     contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre}")     
                     
                     if contra_user == curso_seleccionado.contrasenia_matriculacion:
-                        usuario.matricular_en_curso(curso_seleccionado.nombre)
+                        usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
                         print("Se ha registrado correctamente su matriculación")
 
                     else:
@@ -140,8 +144,32 @@ def matricular_a_curso(usuario):
             print("Opción no válida. Por favor, ingrese un número válido.")
 
 
+
+def desmatricular_de_curso(usuario):
+    print("Cursos en los que estás matriculado:")
+    for i, curso in enumerate(usuario.cursos, 1):
+        print(f"{i}. {curso}")
+
+    while True:
+        cursoIngresado = input("Ingrese el número del curso del que desea desmatricularse: ")
+        if cursoIngresado.isdigit():
+            cursoIngresado = int(cursoIngresado)
+            if 1 <= cursoIngresado <= len(usuario.cursos):
+                curso_seleccionado = usuario.cursos[cursoIngresado - 1]
+
+                usuario.desmatricular_de_curso(curso_seleccionado)
+                print(f"Te has desmatriculado de {curso_seleccionado}.")
+                
+                break
+            else:
+                print("Opción no válida. Por favor, ingrese un número válido.")
+        else:
+            print("Opción no válida. Por favor, ingrese un número válido.")
+
+
+
 def mostrar_cursos(usuario):
-    cursos_matriculados = usuario.cursos
+    cursos_matriculados = usuario.cursos # => Método para obtener cursos del usuario logueado.
 
     if not cursos_matriculados:
         print("No estás matriculado en ningún curso.")
