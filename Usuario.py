@@ -1,47 +1,48 @@
-from abc import ABC
+from abc import ABC, abstractmethod 
 
 
 
 class Usuario(ABC):
     def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str):
-        self.__nombre = nombre
-        self.__apellido = apellido
-        self.__email = email
-        self.__contrasenia = contrasenia
+        self._nombre = nombre
+        self._apellido = apellido
+        self._email = email
+        self._contrasenia = contrasenia
     
+    @abstractmethod
     def __str__(self):
         return f" Nombre: {self._nombre}, Apellido: {self._apellido}, Email: {self._email}"
 
     @property
     def nombre(self):
-        return self.__nombre
+        return self._nombre
     
     @property
     def apellido(self):
-        return self.__apellido
+        return self._apellido
     
     @property
     def email(self):
-        return self.__email
+        return self._email
     
     @property
     def contrasenia(self):
-        return self.__contrasenia 
+        return self._contrasenia 
     
 
     @nombre.setter
     def nombre(self, nombre):
-        self.__nombre = nombre
+        self._nombre = nombre
 
     @apellido.setter
     def apellido(self, apellido):
-        self.__apellido = apellido
+        self._apellido = apellido
 
     @contrasenia.setter
     def contrasenia(self, nueva_contrasenia):
-        self.__contrasenia = nueva_contrasenia
+        self._contrasenia = nueva_contrasenia
 
     
     def validar_credenciales(self, email_user, contrasenia_user):
-          return self.__email == email_user and self.__contrasenia == contrasenia_user
+          return self._email == email_user and self._contrasenia == contrasenia_user
         

@@ -3,12 +3,6 @@ from Profesor import *
 from Usuario import *
 from Curso import *
 
-usuarios = [ 
-    
-    Usuario("pipo","hola","pepe", "1234"),
-    Usuario("prueba","prueba1","coco", "568")
-]
-
 
 estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
     Estudiante("Nicolas","Villalba","n@v", "1221",1221,2022),
@@ -40,40 +34,38 @@ for curso in cursos:
 """"AUTENTICACION USUARIO"""
 
 def autenticar_usuario(opcion):
-    
-    #ESTA FUNCION DEPENDIENDO DE LA OPCION QUE INGRESA EL USUARIO (1 o 2) ITERA EN ARRAY DE PROFESORES O EN 
-    #ARRAY DE ESTUDIANTES
+    #Esta función toma como parámetro la opcion del usuario (1 alumno , 2 profesor)
+    #En funcion de eso se le pide el mail y luego valida que ese mail existe en el array de profesores o alumnos dependiendo elección del usuario
+    #Si existe ese mail , se le solicita contraseña y luego se llama al método validar_credenciales.
 
     email_input = input("Ingresa tu email: ")
-    contrasenia_input = input("Ingresa tu contraseña: ")
+
+    usuario_encontrado = None
 
     if opcion == "1":
-        # Buscar al usuario con el correo electrónico proporcionado
-        usuario_encontrado = None
         for estudiante in estudiantes:
-            if estudiante.validar_credenciales(email_input, contrasenia_input):#=> método para validar credenciales, el mismo se hereda de usuario
+            if estudiante.email == email_input:
                 usuario_encontrado = estudiante
                 break
-
-        if usuario_encontrado:           
-            print(f'Bienvenido/a {estudiante.nombre}!')                   
-            ingresar_como_alumno(usuario_encontrado) #Paso como parámetro el Objeto Estudiante
-        else:
-            print("Credenciales inválidas. Acceso denegado.")
-
     elif opcion == "2":
-        usuario_encontrado = None
         for profesor in profesores:
-            if profesor.validar_credenciales(email_input, contrasenia_input): #=> método para validar credenciales, el mismo se hereda de usuario
+            if profesor.email == email_input:
                 usuario_encontrado = profesor
                 break
 
-        if usuario_encontrado:           
-            print(f'Bienvenido/a {profesor.nombre}!')
-            ingresar_como_profesor(usuario_encontrado)          
-            
+    if usuario_encontrado:
+        contrasenia_input = input("Ingresa tu contraseña: ")
+        if usuario_encontrado.validar_credenciales(email_input, contrasenia_input): # Se valida que el método validar_credenciales retorne true , sino muestra mensaje de error
+            if opcion == "1":
+                print(f'Bienvenido/a {estudiante.nombre}!')
+                ingresar_como_alumno(usuario_encontrado)
+            elif opcion == "2":
+                print(f'Bienvenido/a {profesor.nombre}!')
+                ingresar_como_profesor(usuario_encontrado)
         else:
-            print("Credenciales inválidas. Acceso denegado.")
+            print("Error de ingreso. Credenciales inválidas.")
+    else:
+        print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
 
         
 """"FIN AUTENTICACION USUARIO"""
@@ -104,7 +96,6 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
             break
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
-
         
 
 
@@ -136,7 +127,6 @@ def matricular_a_curso(usuario):
 
                     else:
                         print("Contraseña incorrecta")
-
                 break
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
@@ -224,7 +214,7 @@ def dictar_curso(usuario):
 
     cursosDictados = usuario.cursos
     
-    cursoADictar = input("Ingrese el nombre del curso que desea dictar")
+    cursoADictar = input("Ingrese el nombre del curso que desea dictar: ")
 
     if cursoADictar != "":
         nuevoCurso = Curso(cursoADictar) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
@@ -274,6 +264,7 @@ def ver_cursos(usuario):
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 
 def ver_todos_cursos():
+
     for curso in cursos:
         print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
 
@@ -288,14 +279,10 @@ def main_menu():
 
         opcion = input("Seleccione una opción: ")
 
-        if opcion == "1":
-            autenticar_usuario(opcion)
-        elif opcion == "2":
-            autenticar_usuario(opcion)
-            
+        if opcion == "1" or opcion == "2":
+            autenticar_usuario(opcion)        
         elif opcion == "3":
-            ver_todos_cursos()
-            
+            ver_todos_cursos()            
         elif opcion == "4":
             print("Saliendo del menú...")
             break
