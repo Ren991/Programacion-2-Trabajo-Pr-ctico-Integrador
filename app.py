@@ -273,6 +273,10 @@ def ver_cursos(usuario):
 
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 
+def ver_todos_cursos():
+    for curso in cursos:
+        print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
+
 
 def main_menu():
     while True:
@@ -290,7 +294,7 @@ def main_menu():
             autenticar_usuario(opcion)
             
         elif opcion == "3":
-            print("Lista de cursos:")
+            ver_todos_cursos()
             
         elif opcion == "4":
             print("Saliendo del menú...")
