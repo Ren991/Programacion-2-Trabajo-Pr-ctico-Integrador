@@ -1,4 +1,5 @@
-from Estudiante import *
+#Se importan todas las clases
+from Estudiante import * 
 from Profesor import *
 from Usuario import *
 from Curso import *
@@ -58,10 +59,10 @@ def autenticar_usuario(opcion):
         if usuario_encontrado.validar_credenciales(email_input, contrasenia_input): # Se valida que el método validar_credenciales retorne true , sino muestra mensaje de error
             if opcion == "1":
                 print(f'Bienvenido/a {estudiante.nombre}!')
-                ingresar_como_alumno(usuario_encontrado)
+                ingresar_como_alumno(usuario_encontrado)# Se llama al submenu de alumno
             elif opcion == "2":
                 print(f'Bienvenido/a {profesor.nombre}!')
-                ingresar_como_profesor(usuario_encontrado)
+                ingresar_como_profesor(usuario_encontrado)# Se llama al submenu de profesor
         else:
             print("Error de ingreso. Credenciales inválidas.")
     else:
@@ -69,7 +70,6 @@ def autenticar_usuario(opcion):
 
         
 """"FIN AUTENTICACION USUARIO"""
-
 
 #-----------------FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
 
@@ -95,8 +95,7 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
             print("Volviendo al menú principal...")
             break
         else:
-            print("Opción no válida. Por favor, seleccione una opción válida.")
-        
+            print("Opción no válida. Por favor, seleccione una opción válida.")        
 
 
 def matricular_a_curso(usuario):
@@ -124,7 +123,6 @@ def matricular_a_curso(usuario):
                     if contra_user == curso_seleccionado.contrasenia_matriculacion:
                         usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
                         print("Se ha registrado correctamente su matriculación")
-
                     else:
                         print("Contraseña incorrecta")
                 break
@@ -132,8 +130,6 @@ def matricular_a_curso(usuario):
                 print("Opción no válida. Por favor, ingrese un número válido.")
         else:
             print("Opción no válida. Por favor, ingrese un número válido.")
-
-
 
 def desmatricular_de_curso(usuario):
     print("Cursos en los que estás matriculado:")
@@ -155,7 +151,6 @@ def desmatricular_de_curso(usuario):
             print("Opción no válida. Por favor, ingrese un número válido.")
 
 
-
 def mostrar_cursos(usuario):
     cursos_matriculados = usuario.cursos # => Método para obtener cursos del usuario logueado.
 
@@ -163,14 +158,14 @@ def mostrar_cursos(usuario):
         print("No estás matriculado en ningún curso.")
     else:
         print("Cursos en los que estás matriculado:")
-        for i, curso in enumerate(cursos_matriculados, 1):
+        for i, curso in enumerate(cursos_matriculados, 1): #=> Se enumeran los cursos matriculados.
             print(f"{i}. {curso}")
 
         while True:
             curso_info = input("Ingrese el número del curso al que desea ver (0 para salir): ")
-            if curso_info.isdigit():
-                curso_seleccionado = int(curso_info)
-                if 1 <= curso_seleccionado <= len(cursos_matriculados):
+            if curso_info.isdigit():#=> Se valida que el ingreso haya sido un Número
+                curso_seleccionado = int(curso_info)#=> Se convierte a número el ingreso.
+                if 1 <= curso_seleccionado <= len(cursos_matriculados):#=> Se valida que que el num esté entre el minimo y el maximo.
                     curso = cursos_matriculados[curso_seleccionado - 1]
                     print(f"Nombre: {curso}")
                 elif curso_seleccionado == 0:
@@ -178,13 +173,9 @@ def mostrar_cursos(usuario):
                 else:
                     print("Opción no válida. Por favor, ingrese un número válido o 0 para salir.")
             else:
-                print("Opción no válida. Por favor, ingrese un número válido.")
-
-
-        
+                print("Opción no válida. Por favor, ingrese un número válido.")        
 
 #----------------FIN FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
-
 
 #----------------FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 
@@ -196,9 +187,7 @@ def ingresar_como_profesor(usuario):
         print("1. Dictar curso")
         print("2. Ver curso")
         print("3. Volver al menú principal")
-
         opcion = input("Seleccione una opción: ")
-
         if opcion == "1":
             dictar_curso(usuario)
         elif opcion == "2":
@@ -209,11 +198,9 @@ def ingresar_como_profesor(usuario):
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
 
-
 def dictar_curso(usuario):
 
-    cursosDictados = usuario.cursos
-    
+    cursosDictados = usuario.cursos    
     cursoADictar = input("Ingrese el nombre del curso que desea dictar: ")
 
     if cursoADictar != "":
@@ -228,11 +215,9 @@ def dictar_curso(usuario):
 
     for curso in cursos:
         print(f"Nombre del curso: {curso.nombre}")
-        print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
-    
+        print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")    
     for i, curso in enumerate(cursosDictados, 1):
             print(f"{i}. {curso}")
-
 
 def ver_cursos(usuario):
     cursos_dictados = usuario.cursos  # Método para obtener cursos dictados por el profesor.
@@ -259,15 +244,10 @@ def ver_cursos(usuario):
                 print("Opción no válida. Por favor, ingrese un número válido.")
 
 
-
-
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
-
 def ver_todos_cursos():
-
     for curso in cursos:
         print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
-
 
 def main_menu():
     while True:
