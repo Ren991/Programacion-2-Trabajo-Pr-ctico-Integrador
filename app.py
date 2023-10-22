@@ -212,7 +212,7 @@ def ingresar_como_profesor(usuario):
         if opcion == "1":
             dictar_curso(usuario)
         elif opcion == "2":
-            print("Viendo curso...")
+            ver_cursos(usuario)
         elif opcion == "3":
             print("Volviendo al menú principal...")
             break
@@ -231,7 +231,11 @@ def dictar_curso(usuario):
         cursos.append(nuevoCurso)#=> Se appendea al array con todos los cursos
 
         usuario.dictar_curso(nuevoCurso) #=> Se usa el método de profesores dictar_curso 
-    
+
+        print("Se ha creado correctamente el curso")
+        print(f"Nombre: {nuevoCurso.nombre}")
+        print(f"Contraseña: {nuevoCurso.contrasenia_matriculacion}")
+
     for curso in cursos:
         print(f"Nombre del curso: {curso.nombre}")
         print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
@@ -239,7 +243,15 @@ def dictar_curso(usuario):
     for i, curso in enumerate(cursosDictados, 1):
             print(f"{i}. {curso}")
 
-    
+
+def ver_cursos(usuario):
+
+    cursosDictados = usuario.cursos
+
+    if not cursosDictados:
+        print("No tiene cursos dictados")
+    else:
+        print("Tiene cursos dictados")
     
 
     
