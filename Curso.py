@@ -15,7 +15,7 @@ class Curso():
     
     @nombre.setter
     def nombre(self):
-        return self._nombre
+        return self.__nombre
     
 
     def __generar_contrasenia(self) -> str:
@@ -23,5 +23,5 @@ class Curso():
         return ''.join(random.choice(passw) for i in range(7))
 
     def __str__(self):
-        return f"Este curso es de {self._nombre}"
+        return f"Nombre: {self.__nombre}"
 

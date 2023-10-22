@@ -70,7 +70,7 @@ def autenticar_usuario(opcion):
 
         if usuario_encontrado:           
             print(f'Bienvenido/a {profesor.nombre}!')
-                      
+            ingresar_como_profesor(usuario_encontrado)          
             
         else:
             print("Credenciales inválidas. Acceso denegado.")
@@ -156,10 +156,8 @@ def desmatricular_de_curso(usuario):
             cursoIngresado = int(cursoIngresado)
             if 1 <= cursoIngresado <= len(usuario.cursos):
                 curso_seleccionado = usuario.cursos[cursoIngresado - 1]
-
-                usuario.desmatricular_de_curso(curso_seleccionado)
-                print(f"Te has desmatriculado de {curso_seleccionado}.")
-                
+                usuario.desmatricular_de_curso(curso_seleccionado) # => Se llama al método del objeto Estudiante para desmatricularse de curso.
+                print(f"Te has desmatriculado de {curso_seleccionado}.")                
                 break
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
@@ -198,8 +196,11 @@ def mostrar_cursos(usuario):
 #----------------FIN FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
 
 
+#----------------FUNCIONES PROFESORES------------------------------------------------------------------------------------#
+
 """INGRESO COMO PROFESOR"""
-def ingresar_como_profesor():
+def ingresar_como_profesor(usuario):
+    print(usuario.nombre)
     while True:
         print("\nSubmenú de Profesor:")
         print("1. Dictar curso")
@@ -209,7 +210,7 @@ def ingresar_como_profesor():
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Dictar un curso...")
+            dictar_curso(usuario)
         elif opcion == "2":
             print("Viendo curso...")
         elif opcion == "3":
@@ -219,7 +220,33 @@ def ingresar_como_profesor():
             print("Opción no válida. Por favor, seleccione una opción válida.")
 
 
-""""FIN INGRESO COMO PROFESOR"""
+def dictar_curso(usuario):
+
+    cursosDictados = usuario.cursos
+    
+    cursoADictar = input("Ingrese el nombre del curso que desea dictar")
+
+    if cursoADictar != "":
+        nuevoCurso = Curso(cursoADictar) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
+        cursos.append(nuevoCurso)#=> Se appendea al array con todos los cursos
+
+        usuario.dictar_curso(nuevoCurso) #=> Se usa el método de profesores dictar_curso 
+    
+    for curso in cursos:
+        print(f"Nombre del curso: {curso.nombre}")
+        print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
+    
+    for i, curso in enumerate(cursosDictados, 1):
+            print(f"{i}. {curso}")
+
+    
+    
+
+    
+
+
+
+#----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 
 
 def main_menu():
