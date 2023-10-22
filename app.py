@@ -132,10 +132,13 @@ def matricular_a_curso(usuario):
             print("Opción no válida. Por favor, ingrese un número válido.")
 
 def desmatricular_de_curso(usuario):
+    
+    if not usuario.cursos:
+        print("No estás matriculado en ningún curso.")
+        return  # Salir de la función si no está matriculado en ningún curso
     print("Cursos en los que estás matriculado:")
     for i, curso in enumerate(usuario.cursos, 1):
         print(f"{i}. {curso}")
-
     while True:
         cursoIngresado = input("Ingrese el número del curso del que desea desmatricularse: ")
         if cursoIngresado.isdigit():
@@ -150,10 +153,9 @@ def desmatricular_de_curso(usuario):
         else:
             print("Opción no válida. Por favor, ingrese un número válido.")
 
-
 def mostrar_cursos(usuario):
-    cursos_matriculados = usuario.cursos # => Método para obtener cursos del usuario logueado.
 
+    cursos_matriculados = usuario.cursos # => Método para obtener cursos del usuario logueado.
     if not cursos_matriculados:
         print("No estás matriculado en ningún curso.")
     else:
