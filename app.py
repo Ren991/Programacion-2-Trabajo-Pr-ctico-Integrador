@@ -245,16 +245,29 @@ def dictar_curso(usuario):
 
 
 def ver_cursos(usuario):
+    cursos_dictados = usuario.cursos  # Método para obtener cursos dictados por el profesor.
 
-    cursosDictados = usuario.cursos
-
-    if not cursosDictados:
-        print("No tiene cursos dictados")
+    if not cursos_dictados:
+        print("No has creado ningún curso.")
     else:
-        print("Tiene cursos dictados")
-    
+        print("Cursos que has dictado:")
+        for i, curso in enumerate(cursos_dictados, 1):
+            print(f"{i}. {curso.nombre}")
 
-    
+        while True:
+            curso_info = input("Ingrese el número del curso que desea ver (0 para salir): ")
+            if curso_info.isdigit():
+                curso_seleccionado = int(curso_info)
+                if 1 <= curso_seleccionado <= len(cursos_dictados):
+                    curso = cursos_dictados[curso_seleccionado - 1]
+                    print(f"Nombre: {curso.nombre} , contraseña: {curso.contrasenia_matriculacion}")
+                elif curso_seleccionado == 0:
+                    break
+                else:
+                    print("Opción no válida. Por favor, ingrese un número válido o 0 para salir.")
+            else:
+                print("Opción no válida. Por favor, ingrese un número válido.")
+
 
 
 
