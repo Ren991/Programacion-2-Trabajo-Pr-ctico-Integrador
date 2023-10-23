@@ -17,8 +17,8 @@ class Curso():
     def nombre(self):
         return self.__nombre
     
-
-    def __generar_contrasenia(self) -> str:
+    @classmethod
+    def __generar_contrasenia(cls) -> str:
         passw = string.ascii_uppercase + string.ascii_lowercase + string.digits
         return ''.join(random.choice(passw) for i in range(7))
 

@@ -4,19 +4,16 @@ from Profesor import *
 from Usuario import *
 from Curso import *
 
-
 estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
     Estudiante("Nicolas","Villalba","n@v", "1221",1221,2022),
     Estudiante("Rodrigo", "Diaz", "r@d", "4422", 4422, 2014),
     Estudiante("Casiano","Almeida","coco@321", "4321", 4321, 2011),
     Estudiante("Renzo", "Beccari", "r@c", "1234", 1234, 2023),
 ]
-
 profesores = [ # => Se Crean 2 Objetos de la clase profesores
     Profesor("Mercedes","Valloni","m@v","m123","ingeniera","2012"),
     Profesor("Prueba","Profesor2","p@p","p123","Tecnico quimico","2022")
 ]
-
 cursos = [ # => Se Crean 6 Objetos de la clase cursos
     Curso("Ingles I"),
     Curso("Ingles II"),
@@ -25,12 +22,9 @@ cursos = [ # => Se Crean 6 Objetos de la clase cursos
     Curso("Programacion I"),
     Curso("Programacion II")
 ]
-
 for curso in cursos:
     print(f"Nombre del curso: {curso.nombre}")
     print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
-
-
 
 """"AUTENTICACION USUARIO"""
 
@@ -67,7 +61,6 @@ def autenticar_usuario(opcion):
             print("Error de ingreso. Credenciales inválidas.")
     else:
         print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
-
         
 """"FIN AUTENTICACION USUARIO"""
 
@@ -95,8 +88,7 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
             print("Volviendo al menú principal...")
             break
         else:
-            print("Opción no válida. Por favor, seleccione una opción válida.")        
-
+            print("Opción no válida. Por favor, seleccione una opción válida.")     
 
 def matricular_a_curso(usuario):
     cursos_disponibles = cursos 
@@ -132,7 +124,7 @@ def matricular_a_curso(usuario):
             print("Opción no válida. Por favor, ingrese un número válido.")
 
 def desmatricular_de_curso(usuario):
-    
+
     if not usuario.cursos:
         print("No estás matriculado en ningún curso.")
         return  # Salir de la función si no está matriculado en ningún curso
@@ -245,7 +237,6 @@ def ver_cursos(usuario):
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
 
-
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 def ver_todos_cursos():
     for curso in cursos:
@@ -271,7 +262,7 @@ def main_menu():
         else:
             print("Opción no válida. Por favor, seleccione una opción válida.")
 
-main_menu()
+main_menu() 
 
 
 
