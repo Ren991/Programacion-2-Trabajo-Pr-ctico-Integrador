@@ -12,9 +12,18 @@ class Profesor(Usuario):
     @property
     def titulo(self):
         return self.__titulo
+    
+    @titulo.setter
+    def titulo(self, titulo):
+        self.__titulo = titulo
+
     @property
     def anio_egreso(self):
         return self.__anio_egreso
+    
+    @anio_egreso.setter
+    def anio_egreso(self, anio_egreso):
+        self.__anio_egreso = anio_egreso
     
     @property
     def cursos(self) -> list:

@@ -14,8 +14,8 @@ class Curso():
         return self.__contrasenia_matriculacion
     
     @nombre.setter
-    def nombre(self):
-        return self.__nombre
+    def nombre(self , nuevo_nombre):
+        self.__nombre = nuevo_nombre
     
     @classmethod
     def __generar_contrasenia(cls) -> str:

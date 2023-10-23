@@ -110,7 +110,7 @@ def matricular_a_curso(usuario):
                 else:
                     # El usuario no está matriculado en el curso
                     print(f"No estás matriculado en {curso_seleccionado.nombre}.")
-                    contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre}")     
+                    contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
                     
                     if contra_user == curso_seleccionado.contrasenia_matriculacion:
                         usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
