@@ -9,6 +9,8 @@ class Curso():
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()        
         self.__codigo = Curso.obtener_siguiente_codigo()
+        self.__archivos = [] 
+
 
         
 
@@ -22,6 +24,10 @@ class Curso():
     @property
     def codigo(self):
         return self.__codigo
+    
+    @property
+    def archivos(self):
+        return self.__archivos
     
     @nombre.setter
     def nombre(self , nuevo_nombre):
@@ -41,13 +47,3 @@ class Curso():
         return f"Nombre: {self.nombre}, Codigo: {self.codigo}"
     
 
-    # Ejemplo de uso
-curso1 = Curso("Curso de Matemáticas")
-curso2 = Curso("Curso de Historia")
-
-print(curso1)
-print(curso2)
-print(curso1.contrasenia_matriculacion)
-print(curso2.contrasenia_matriculacion)
-print(curso1.codigo)
-print(curso2.codigo)

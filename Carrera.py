@@ -1,7 +1,8 @@
 class Carrera():
-    def __init__(self, nombre, cant_anios) -> None:
-        self.__nombre: nombre
-        self.__cant_anios: cant_anios
+    def __init__(self, nombre, cant_anios,cursos=None) -> None:
+        self.__nombre= nombre
+        self.__cant_anios= cant_anios
+        self.__cursos = cursos if cursos is not None else []
         
 
     
@@ -12,6 +13,10 @@ class Carrera():
     @property
     def cant_anios(self):
         return self.__cant_anios
+    
+    @property
+    def cursos(self):
+        return self.__cursos
     
     def get_cantidad_materias(self) -> int:
         return None
