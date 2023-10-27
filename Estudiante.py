@@ -7,6 +7,7 @@ class Estudiante(Usuario):
         self.__legajo = legajo
         self.__anio_inscripcion_carrera = anio_inscripcion_carrera
         self.__cursos = []
+        
 
     def __str__(self):
         return f"Estudiante: {self.nombre} {self.apellido} (Legajo: {self.legajo}, Año de inscripción: {self.anio_inscripcion_carrera})"

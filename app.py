@@ -3,8 +3,9 @@ from Estudiante import *
 from Profesor import *
 from Usuario import *
 from Curso import *
+from datos import *
 
-estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
+""" estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
     Estudiante("Nicolas","Villalba","n@v", "1221",1221,2022),
     Estudiante("Rodrigo", "Diaz", "r@d", "4422", 4422, 2014),
     Estudiante("Casiano","Almeida","coco@321", "4321", 4321, 2011),
@@ -24,7 +25,7 @@ cursos = [ # => Se Crean 6 Objetos de la clase cursos
 ]
 for curso in cursos:
     print(f"Nombre del curso: {curso.nombre}")
-    print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")
+    print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}") """
 
 """"AUTENTICACION USUARIO"""
 
@@ -36,14 +37,15 @@ def autenticar_usuario(opcion):
     email_input = input("Ingresa tu email: ")
 
     usuario_encontrado = None
-
+    arrayEstudiantes = estudiantes
+    arrayProfesores = profesores
     if opcion == "1":
-        for estudiante in estudiantes:
+        for estudiante in arrayEstudiantes:
             if estudiante.email == email_input:
                 usuario_encontrado = estudiante
                 break
     elif opcion == "2":
-        for profesor in profesores:
+        for profesor in arrayProfesores:
             if profesor.email == email_input:
                 usuario_encontrado = profesor
                 break
