@@ -17,7 +17,7 @@ profesores = [ # => Se Crean 2 Objetos de la clase profesores
     Profesor("Prueba","Profesor2","p@p","p123","Tecnico quimico","2022")
 ]
 cursos = [
-    
+
 ]
 """ cursos= [
     Curso("Ingles I"),
@@ -76,3 +76,4 @@ for estudiante in estudiantes:
     else:
         print('No inscrito en ninguna carrera')
     print('\n')
+

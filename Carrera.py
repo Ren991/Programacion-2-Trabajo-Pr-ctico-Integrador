@@ -19,11 +19,15 @@ class Carrera():
     def cursos(self):
         return self.__cursos
     
+    @property
+    def estudiantes(self):
+        return self.__estudiantes
+    
     def get_cantidad_materias(self) -> int:
         return None
     
     def __str__(self) -> str:
-        return f"Nombre: {self.nombre}, Cantidad de años : {self.cant_anios}"
+        return f"Nombre: {self.nombre}, Cantidad de años : {self.cant_anios}, Estudiantes: {self.estudiantes}"
     
     
         

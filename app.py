@@ -5,30 +5,6 @@ from Usuario import *
 from Curso import *
 from datos import *
 
-""" estudiantes = [ # => Se Crean 4 Objetos de la clase estudiante
-    Estudiante("Nicolas","Villalba","n@v", "1221",1221,2022),
-    Estudiante("Rodrigo", "Diaz", "r@d", "4422", 4422, 2014),
-    Estudiante("Casiano","Almeida","coco@321", "4321", 4321, 2011),
-    Estudiante("Renzo", "Beccari", "r@c", "1234", 1234, 2023),
-]
-profesores = [ # => Se Crean 2 Objetos de la clase profesores
-    Profesor("Mercedes","Valloni","m@v","m123","ingeniera","2012"),
-    Profesor("Prueba","Profesor2","p@p","p123","Tecnico quimico","2022")
-]
-cursos = [ # => Se Crean 6 Objetos de la clase cursos
-    Curso("Ingles I"),
-    Curso("Ingles II"),
-    Curso("Laboratorio I"),
-    Curso("Laboratorio II"),
-    Curso("Programacion I"),
-    Curso("Programacion II")
-]
-for curso in cursos:
-    print(f"Nombre del curso: {curso.nombre}")
-    print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}") """
-
-""""AUTENTICACION USUARIO"""
-
 def autenticar_usuario(opcion):
     #Esta función toma como parámetro la opcion del usuario (1 alumno , 2 profesor)
     #En funcion de eso se le pide el mail y luego valida que ese mail existe en el array de profesores o alumnos dependiendo elección del usuario
@@ -133,6 +109,7 @@ def matricular_a_curso(usuario):
     for i, curso in enumerate(cursos_disponibles, 1): #Enumerate es un método , crea una tupla para cada elemento, con el índice y el nombre.
         print(f"{i} {curso.nombre}") # Muestra el índice y el nombre
 
+
     while True:
         cursoIngresado = input("Ingrese el número del curso al que desea matricularse: ")
         if cursoIngresado.isdigit(): # isDigit retorna true en caso de que sea numero y en caso de que sea string devuelve false.
@@ -145,14 +122,18 @@ def matricular_a_curso(usuario):
                     print(f"Ya estás matriculado en {curso_seleccionado.nombre}.")
                 else:
                     # El usuario no está matriculado en el curso
-                    print(f"No estás matriculado en {curso_seleccionado.nombre}.")
-                    contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
-                    
-                    if contra_user == curso_seleccionado.contrasenia_matriculacion:
-                        usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
-                        print("Se ha registrado correctamente su matriculación")
-                    else:
-                        print("Contraseña incorrecta")
+                    if usuario.carrera == cursoIngresado.carrera: #=> Se valida que la carrera del usuario y la carrera a la que pertenece el curso coincidan
+                        print(f"No estás matriculado en {curso_seleccionado.nombre}.")
+                        contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
+                        
+                        if contra_user == curso_seleccionado.contrasenia_matriculacion:
+                            usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
+                            print("Se ha registrado correctamente su matriculación")
+                        else:
+                            print("Contraseña incorrecta")
+                    else: # => Si la carrera del usuario y la carrera del curso no coinciden se muestra msj de error
+                        print(f"No se puede inscribir a ese curso porque no pertenece a: {usuario.carrera}")
+
                 break
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
@@ -230,11 +211,31 @@ def ingresar_como_profesor(usuario):
 
 def dictar_curso(usuario):
 
+
     cursosDictados = usuario.cursos    
+
+    print("Seleccione una carrera:")
+    for i, carrera in enumerate(carreras, 1):
+        print(f"{i}. {carrera.nombre}")
+
+    while True:
+        seleccion = input("Ingrese el número de la carrera que desea seleccionar: ")
+        if seleccion.isdigit():
+            seleccion = int(seleccion)
+            if 1 <= seleccion <= len(carreras):
+                # El usuario ha seleccionado una carrera válida
+                carrera_seleccionada = carreras[seleccion - 1]
+                print(f"Ha seleccionado la carrera: {carrera_seleccionada.nombre}")
+                break
+            else:
+                print("Número fuera de rango. Por favor, ingrese un número válido.")
+        else:
+            print("Entrada no válida. Por favor, ingrese un número válido.")
+
     cursoADictar = input("Ingrese el nombre del curso que desea dictar: ")
 
     if cursoADictar != "":
-        nuevoCurso = Curso(cursoADictar) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
+        nuevoCurso = Curso(cursoADictar,carrera_seleccionada) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
         cursos.append(nuevoCurso)#=> Se appendea al array con todos los cursos
 
         usuario.dictar_curso(nuevoCurso) #=> Se usa el método de profesores dictar_curso 
