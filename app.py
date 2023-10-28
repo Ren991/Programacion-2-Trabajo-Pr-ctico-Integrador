@@ -103,11 +103,14 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
             print("Opción no válida. Por favor, seleccione una opción válida.")     
 
 def matricular_a_curso(usuario):
+
+    
     cursos_disponibles = cursos 
 
     print("Cursos disponibles:")
     for i, curso in enumerate(cursos_disponibles, 1): #Enumerate es un método , crea una tupla para cada elemento, con el índice y el nombre.
-        print(f"{i} {curso.nombre}") # Muestra el índice y el nombre
+        print(f"{i} {curso.nombre} - {curso.carrera.nombre} ") # Muestra el índice y el nombre
+
 
 
     while True:
@@ -122,7 +125,7 @@ def matricular_a_curso(usuario):
                     print(f"Ya estás matriculado en {curso_seleccionado.nombre}.")
                 else:
                     # El usuario no está matriculado en el curso
-                    if usuario.carrera == cursoIngresado.carrera: #=> Se valida que la carrera del usuario y la carrera a la que pertenece el curso coincidan
+                    if usuario.carrera == curso_seleccionado.carrera.nombre: #=> Se valida que la carrera del usuario y la carrera a la que pertenece el curso coincidan
                         print(f"No estás matriculado en {curso_seleccionado.nombre}.")
                         contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
                         
