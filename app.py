@@ -62,7 +62,41 @@ def autenticar_usuario(opcion):
         else:
             print("Error de ingreso. Credenciales inválidas.")
     else:
-        print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
+        if not usuario_encontrado and opcion == "2":
+            print("Correo electrónico no encontrado")
+            while True:
+                opt_profesor = input("Ingrese (1) si desea registrarse como profesor o (2) para salir: ")
+                if opt_profesor == "1":
+                    registrar_nuevo_profesor(email_input)
+                    break  # Sale del bucle si la opción es válida (1)
+                elif opt_profesor == "2":
+                    # El usuario eligió salir, puedes hacer algo aquí si es necesario
+                    break
+                else:
+                    print("Opción no válida. Ingrese (1) para registrarse o (2) para salir.")
+        else:
+            print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
+
+
+
+def registrar_nuevo_profesor(email_input):
+    print("----REGISTRO NUEVO PROFESOR----")
+    nombre= input("Ingrese su nombre : ")
+    apellido= input("Ingrese apellido : ")
+    contrasenia= input("Ingrese contrasenia : ")
+    titulo= input("Ingrese su título : ")
+    anio= int(input(f"Ingrese el año en que egresó de {titulo} : "))
+
+    nuevo_profesor = Profesor(nombre,apellido,email_input,contrasenia,titulo,anio)
+
+    profesores.append(nuevo_profesor)
+    # nombre: str, apellido: str, email: str, contrasenia: str, titulo: str, anio:int
+    for profesor in profesores:
+        print(f"Nombre: {profesor.nombre} {profesor.apellido}")
+        print(f"Email: {profesor.email}")
+        print(f"Contraseña: {profesor.contrasenia}")
+        print(f"Título: {profesor.titulo}")
+
         
 """"FIN AUTENTICACION USUARIO"""
 
@@ -241,8 +275,11 @@ def ver_cursos(usuario):
 
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 def ver_todos_cursos():
-    for curso in cursos:
-        print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
+    if not cursos:
+        print("No hay cursos disponibles en este momento.")
+    else:
+        for curso in cursos:
+            print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
 
 def main_menu():
     while True:

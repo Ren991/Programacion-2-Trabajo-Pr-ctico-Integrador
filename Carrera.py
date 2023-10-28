@@ -3,6 +3,7 @@ class Carrera():
         self.__nombre= nombre
         self.__cant_anios= cant_anios
         self.__cursos = cursos if cursos is not None else []
+        self.__estudiantes = []
         
 
     

@@ -33,4 +33,6 @@ class Profesor(Usuario):
         self.cursos.append(curso)
     
     def __str__(self) -> str:
-        return f"El profesor es: {self.nombre}"
+        return f"El profesor es: {self.nombre} {self.apellido}, Email: {self.email}, Titulo: {self.titulo}, Anio Egreso: {self.anio_egreso}"
+    
+    

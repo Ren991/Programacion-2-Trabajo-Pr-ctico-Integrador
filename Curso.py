@@ -4,12 +4,14 @@ class Curso():
 
     codigo_actual = 0 
     __prox_cod = 1
-    def __init__(self, nombre:str ):
+    def __init__(self, nombre:str , carrera: str):
         self.__prox_cod = 1
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()        
         self.__codigo = Curso.obtener_siguiente_codigo()
+        self.__carrera = carrera
         self.__archivos = [] 
+
 
 
         
@@ -25,6 +27,10 @@ class Curso():
     def codigo(self):
         return self.__codigo
     
+    @property
+    def carrera(self):
+        return self.__carrera
+
     @property
     def archivos(self):
         return self.__archivos
@@ -44,6 +50,6 @@ class Curso():
         return ''.join(random.choice(passw) for i in range(7))
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Codigo: {self.codigo}"
+        return f"Nombre: {self.nombre}, Codigo: {self.codigo}, Carrera: {self.carrera}"
     
 

@@ -2,11 +2,13 @@ from Usuario import *
 
 
 class Estudiante(Usuario):
-    def __init__(self, nombre, apellido, email, contrasenia, legajo, anio_inscripcion_carrera)-> None:
+    def __init__(self, nombre, apellido, email, contrasenia, legajo, anio_inscripcion_carrera, carrera)-> None:
         super().__init__(nombre, apellido, email, contrasenia)
         self.__legajo = legajo
-        self.__anio_inscripcion_carrera = anio_inscripcion_carrera
+        self.__anio_inscripcion_carrera = anio_inscripcion_carrera    
+        self.__carrera = carrera    
         self.__cursos = []
+
         
 
     def __str__(self):
@@ -28,6 +30,10 @@ class Estudiante(Usuario):
     @anio_inscripcion_carrera.setter
     def anio_inscripcion_carrera(self, nuevo_anio_inscripcion):
         self.__anio_inscripcion_carrera = nuevo_anio_inscripcion
+
+    @property
+    def carrera(self):
+        return self.__carrera
         
     @property
     def cursos(self) -> list:
