@@ -11,9 +11,6 @@ class Curso():
         self.__codigo = Curso.obtener_siguiente_codigo()
         self.__carrera = carrera
         self.__archivos = [] 
-
-
-
         
 
     @property
@@ -39,6 +36,14 @@ class Curso():
     def nombre(self , nuevo_nombre):
         self.__nombre = nuevo_nombre
 
+    @property
+    def cantidad_archivos(self):
+        return len(self.__archivos)
+    
+    
+    def nuevo_archivo(self,archivo):
+        self.__archivos.append(archivo)
+
     @classmethod
     def obtener_siguiente_codigo(cls):
         cls.codigo_actual += cls.__prox_cod
@@ -50,6 +55,6 @@ class Curso():
         return ''.join(random.choice(passw) for i in range(7))
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Codigo: {self.codigo}, Carrera: {self.carrera}"
+        return f"Nombre: {self.nombre}, Codigo: {self.codigo}, Carrera: {self.carrera}, Cantidad archivos:{self.cantidad_archivos}"
     
 

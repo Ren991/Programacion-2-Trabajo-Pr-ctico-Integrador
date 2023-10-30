@@ -97,19 +97,45 @@ def ver_cursos(usuario):
         print("Cursos que has dictado:")
         for i, curso in enumerate(cursos_dictados, 1):
             print(f"{i}. {curso.nombre}")
-
+        
         while True:
             curso_info = input("Ingrese el número del curso que desea ver (0 para salir): ")
             if curso_info.isdigit():
                 curso_seleccionado = int(curso_info)
                 if 1 <= curso_seleccionado <= len(cursos_dictados):
                     curso = cursos_dictados[curso_seleccionado - 1]
-                    print(f"Nombre: {curso.nombre} , contraseña: {curso.contrasenia_matriculacion}")
+                    print(f"Nombre: {curso.nombre} , contraseña: {curso.contrasenia_matriculacion} , codigo: {curso.codigo} , cantidad de archivos: {curso.cantidad_archivos}")
+                
+                    respuestaProf = input("Desea agregar un archivo adjunto? - Ingrese 'si' o 'no' ")
+
+                    if respuestaProf.lower() == "si":
+                        agregar_archivo(curso)
+                        break
+                    elif respuestaProf.lower() == "no":
+                        break
+                    else:
+                        print("Opcion Inválida")
+
                 elif curso_seleccionado == 0:
                     break
                 else:
                     print("Opción no válida. Por favor, ingrese un número válido o 0 para salir.")
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
+
+
+def agregar_archivo(curso):
+
+    print("----AGREGAR ARCHIVO----")
+    nombre_archivo = input("Ingrese nombre del archivo : ")
+    formato_archivo = input("Ingrese formato del archivo : ")
+
+    archivo = Curso(nombre_archivo,formato_archivo)
+
+
+
+    curso.nuevo_archivo(archivo)
+
+    print("----Archivo ingresado con éxito!!----")
 
 #----------------FIN FUNCIONES PROFESORES------------------------------------------------------------------------------------#
