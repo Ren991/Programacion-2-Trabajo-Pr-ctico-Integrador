@@ -35,9 +35,13 @@ class Estudiante(Usuario):
     def carrera(self):
         return self.__carrera
         
+    """ @property
+    def cursos(self) -> list:
+        return self.__cursos    """   
+    
     @property
     def cursos(self) -> list:
-        return self.__cursos      
+        return self.__cursos
     
 
     def matricular_en_curso(self, curso) -> None:

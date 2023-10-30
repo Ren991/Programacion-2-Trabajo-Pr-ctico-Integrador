@@ -31,6 +31,7 @@ def autenticar_usuario(opcion):
     if usuario_encontrado:
         contrasenia_input = input("Ingresa tu contraseña: ")
         if usuario_encontrado.validar_credenciales(email_input, contrasenia_input): # Se valida que el método validar_credenciales retorne true , sino muestra mensaje de error
+            
             if opcion == "1":
                 print(f'Bienvenido/a {estudiante.nombre}!')
                 ingresar_como_alumno(usuario_encontrado)# Se llama al submenu de alumno

@@ -5,6 +5,7 @@ from Curso import *
 from datos import *
 from funciones_alumnos import *
 from funciones_profesores import *
+from Archivo import *
 
 #-----------------FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#
 
@@ -16,7 +17,9 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
         print("2. Desmatricularse a un curso")
         print("3. Ver curso")
         print("4. Volver al menú principal")
-        print(f"Cursos del usuario = {usuario.cursos}")
+        print("Cursos del usuario:")
+        for curso in usuario.cursos:
+            print(curso.nombre)
 
         opcion = input("Seleccione una opción: ")
 
@@ -60,7 +63,9 @@ def matricular_a_curso(usuario):
                         contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
                         
                         if contra_user == curso_seleccionado.contrasenia_matriculacion:
-                            usuario.matricular_en_curso(curso_seleccionado.nombre) # => Método para matricular el usuario a un curso
+                            #usuario.matricular_en_curso(curso_seleccionado.nombre)
+                            usuario.matricular_en_curso(curso_seleccionado)# => Método para matricular el usuario a un curso
+                             
                             print("Se ha registrado correctamente su matriculación")
                         else:
                             print("Contraseña incorrecta")
@@ -95,28 +100,48 @@ def desmatricular_de_curso(usuario):
         else:
             print("Opción no válida. Por favor, ingrese un número válido.")
 
-def mostrar_cursos(usuario):
 
-    cursos_matriculados = usuario.cursos # => Método para obtener cursos del usuario logueado.
+def mostrar_archivos_de_curso(curso):
+    # Verificar si el curso tiene archivos
+    arrayArchivos = curso.archivos
+    if arrayArchivos:
+        print("Archivos del curso:")
+        for archivo in arrayArchivos:
+            if hasattr(archivo, 'formato'):
+                print(f"Nombre del archivo: {archivo.nombre}, Formato: {archivo.formato}")
+            else:
+                print(f"El objeto {archivo} no tiene un atributo 'formato'.")
+    else:
+        print("El curso no tiene archivos.")
+
+
+def mostrar_cursos(usuario):
+    cursos_matriculados = usuario.cursos
+
+    
     if not cursos_matriculados:
         print("No estás matriculado en ningún curso.")
     else:
         print("Cursos en los que estás matriculado:")
-        for i, curso in enumerate(cursos_matriculados, 1): #=> Se enumeran los cursos matriculados.
-            print(f"{i}. {curso}")
+        for i, curso in enumerate(cursos_matriculados, 1):
+            print(f"{i}. {curso.nombre}")
 
         while True:
             curso_info = input("Ingrese el número del curso al que desea ver (0 para salir): ")
-            if curso_info.isdigit():#=> Se valida que el ingreso haya sido un Número
-                curso_seleccionado = int(curso_info)#=> Se convierte a número el ingreso.
-                if 1 <= curso_seleccionado <= len(cursos_matriculados):#=> Se valida que que el num esté entre el minimo y el maximo.
+            if curso_info.isdigit():
+                curso_seleccionado = int(curso_info)
+                if 1 <= curso_seleccionado <= len(cursos_matriculados):
                     curso = cursos_matriculados[curso_seleccionado - 1]
-                    print(f"Nombre: {curso}")
+                    print(f"Nombre: {curso.nombre}")
+                    mostrar_archivos_de_curso(curso)  
                 elif curso_seleccionado == 0:
                     break
                 else:
                     print("Opción no válida. Por favor, ingrese un número válido o 0 para salir.")
             else:
-                print("Opción no válida. Por favor, ingrese un número válido.")        
+                print("Opción no válida. Por favor, ingrese un número válido.")
+
+
+   
 
 #----------------FIN FUNCIONES ALUMNOS-----------------------------------------------------------------------------------#

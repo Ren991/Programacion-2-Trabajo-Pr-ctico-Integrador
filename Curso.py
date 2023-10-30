@@ -1,4 +1,5 @@
 import string, random
+from Archivo import *
 
 class Curso():
 
@@ -32,6 +33,10 @@ class Curso():
     def archivos(self):
         return self.__archivos
     
+    @archivos.setter
+    def archivos(self, nuevo_archivo):
+        self.__archivos = nuevo_archivo
+    
     @nombre.setter
     def nombre(self , nuevo_nombre):
         self.__nombre = nuevo_nombre
@@ -57,4 +62,3 @@ class Curso():
     def __str__(self):
         return f"Nombre: {self.nombre}, Codigo: {self.codigo}, Carrera: {self.carrera}, Cantidad archivos:{self.cantidad_archivos}"
     
-

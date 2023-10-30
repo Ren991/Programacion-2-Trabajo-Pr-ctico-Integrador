@@ -49,7 +49,7 @@ def ingresar_como_profesor(usuario):
 
 def dictar_curso(usuario):
 
-
+    
     cursosDictados = usuario.cursos    
 
     print("Seleccione una carrera:")
@@ -74,6 +74,7 @@ def dictar_curso(usuario):
 
     if cursoADictar != "":
         nuevoCurso = Curso(cursoADictar,carrera_seleccionada) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
+        
         cursos.append(nuevoCurso)#=> Se appendea al array con todos los cursos
 
         usuario.dictar_curso(nuevoCurso) #=> Se usa el método de profesores dictar_curso 
@@ -91,6 +92,7 @@ def dictar_curso(usuario):
 def ver_cursos(usuario):
     cursos_dictados = usuario.cursos  # Método para obtener cursos dictados por el profesor.
 
+    
     if not cursos_dictados:
         print("No has creado ningún curso.")
     else:
@@ -130,7 +132,7 @@ def agregar_archivo(curso):
     nombre_archivo = input("Ingrese nombre del archivo : ")
     formato_archivo = input("Ingrese formato del archivo : ")
 
-    archivo = Curso(nombre_archivo,formato_archivo)
+    archivo = Archivo(nombre_archivo,formato_archivo)
 
 
 
