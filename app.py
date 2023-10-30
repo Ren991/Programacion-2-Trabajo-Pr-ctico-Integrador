@@ -44,15 +44,13 @@ def autenticar_usuario(opcion):
         if not usuario_encontrado and opcion == "2":
             print("Correo electrónico no encontrado")
             while True:
-                opt_profesor = input("Ingrese (1) si desea registrarse como profesor o (2) para salir: ")
-                if opt_profesor == "1":
+                opt_profesor = input("Ingrese código para registrarse como profesor : ")
+                if opt_profesor.lower() == "admin": #=> Se utiliza el método lower para prevenir errores
                     registrar_nuevo_profesor(email_input)
                     break  # Sale del bucle si la opción es válida (1)
-                elif opt_profesor == "2":
-                    # El usuario eligió salir, puedes hacer algo aquí si es necesario
-                    break
+               
                 else:
-                    print("Opción no válida. Ingrese (1) para registrarse o (2) para salir.")
+                    break
         else:
             print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
 
@@ -63,8 +61,10 @@ def ver_todos_cursos():
     if not cursos:
         print("No hay cursos disponibles en este momento.")
     else:
-        for curso in cursos:
-            print(f"Nombre del curso: {curso.nombre} , Carrera: Tecnicatura universitaria en programacion")
+       cursosOrdenados=sorted(cursos, key=lambda x: x.nombre)
+       for curso in cursosOrdenados:
+        print(f"Nombre del curso: {curso.nombre}, Carrera: {curso.carrera.nombre}")
+
 
 def main_menu():
     while True:

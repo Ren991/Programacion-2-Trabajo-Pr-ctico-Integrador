@@ -104,6 +104,7 @@ def desmatricular_de_curso(usuario):
 def mostrar_archivos_de_curso(curso):
     # Verificar si el curso tiene archivos
     arrayArchivos = curso.archivos
+    archivos_ordenados = sorted(arrayArchivos, key=lambda archivo: archivo.fecha)
     if arrayArchivos:
         print("Archivos del curso:")
         for archivo in arrayArchivos:

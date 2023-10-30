@@ -85,9 +85,10 @@ def dictar_curso(usuario):
 
     for curso in cursos:
         print(f"Nombre del curso: {curso.nombre}")
+        print(f"Código: {curso.codigo}")
         print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")    
-    for i, curso in enumerate(cursosDictados, 1):
-            print(f"{i}. {curso}")
+    """ for i, curso in enumerate(cursosDictados, 1):
+            print(f"{i}. {curso.carrera.nombre}") """
 
 def ver_cursos(usuario):
     cursos_dictados = usuario.cursos  # Método para obtener cursos dictados por el profesor.
@@ -108,7 +109,7 @@ def ver_cursos(usuario):
                     curso = cursos_dictados[curso_seleccionado - 1]
                     print(f"Nombre: {curso.nombre} , contraseña: {curso.contrasenia_matriculacion} , codigo: {curso.codigo} , cantidad de archivos: {curso.cantidad_archivos}")
                 
-                    respuestaProf = input("Desea agregar un archivo adjunto? - Ingrese 'si' o 'no' ")
+                    respuestaProf = input("Desea agregar un archivo adjunto? - Ingrese 'si' o 'no' ") # Validación para subir un archivo
 
                     if respuestaProf.lower() == "si":
                         agregar_archivo(curso)

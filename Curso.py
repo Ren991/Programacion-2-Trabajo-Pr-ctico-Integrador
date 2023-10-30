@@ -60,5 +60,5 @@ class Curso():
         return ''.join(random.choice(passw) for i in range(7))
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Codigo: {self.codigo}, Carrera: {self.carrera}, Cantidad archivos:{self.cantidad_archivos}"
+         return f"Nombre: {self.nombre}, Carrera: {self.carrera}"
     

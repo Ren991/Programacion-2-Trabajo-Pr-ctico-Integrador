@@ -33,11 +33,7 @@ class Estudiante(Usuario):
 
     @property
     def carrera(self):
-        return self.__carrera
-        
-    """ @property
-    def cursos(self) -> list:
-        return self.__cursos    """   
+        return self.__carrera     
     
     @property
     def cursos(self) -> list:
