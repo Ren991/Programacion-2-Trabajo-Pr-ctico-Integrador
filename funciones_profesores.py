@@ -9,16 +9,16 @@ from funciones_profesores import *
 
 def registrar_nuevo_profesor(email_input):
     print("----REGISTRO NUEVO PROFESOR----")
-    nombre= input("Ingrese su nombre : ")
-    apellido= input("Ingrese apellido : ")
-    contrasenia= input("Ingrese contrasenia : ")
-    titulo= input("Ingrese su título : ")
-    anio= int(input(f"Ingrese el año en que egresó de {titulo} : "))
+    nombre = input("Ingrese su nombre : ")
+    apellido = input("Ingrese apellido : ")
+    contrasenia = input("Ingrese contrasenia : ")
+    titulo = input("Ingrese su título : ")
+    anio = int(input(f"Ingrese el año en que egresó de {titulo} : "))
 
-    nuevo_profesor = Profesor(nombre,apellido,email_input,contrasenia,titulo,anio)
+    nuevo_profesor = Profesor(nombre,apellido,email_input,contrasenia,titulo,anio) #=> Se crea instancia de profesor.
 
-    profesores.append(nuevo_profesor)
-    # nombre: str, apellido: str, email: str, contrasenia: str, titulo: str, anio:int
+    profesores.append(nuevo_profesor) #=> Se apendea al array de profesores de datos.py
+    
     for profesor in profesores:
         print(f"Nombre: {profesor.nombre} {profesor.apellido}")
         print(f"Email: {profesor.email}")
@@ -29,8 +29,8 @@ def registrar_nuevo_profesor(email_input):
 #----------------FUNCIONES PROFESORES------------------------------------------------------------------------------------#
 
 """INGRESO COMO PROFESOR"""
-def ingresar_como_profesor(usuario):
-    print(usuario.nombre)
+def ingresar_como_profesor(usuario):#=> El parámetro es el usuario que entró
+    
     while True:
         print("\nSubmenú de Profesor:")
         print("1. Dictar curso")
@@ -48,12 +48,11 @@ def ingresar_como_profesor(usuario):
             print("Opción no válida. Por favor, seleccione una opción válida.")
 
 def dictar_curso(usuario):
-
     
-    cursosDictados = usuario.cursos    
+    cursosDictados = usuario.cursos    #=> cursosDictados es un array de objetos (de la clase Curso) donde están los cursos del profesor. 
 
     print("Seleccione una carrera:")
-    for i, carrera in enumerate(carreras, 1):
+    for i, carrera in enumerate(carreras, 1): #=> Se recorre el array carreras y se enumera
         print(f"{i}. {carrera.nombre}")
 
     while True:
@@ -70,7 +69,7 @@ def dictar_curso(usuario):
         else:
             print("Entrada no válida. Por favor, ingrese un número válido.")
 
-    cursoADictar = input("Ingrese el nombre del curso que desea dictar: ")
+    cursoADictar = input("Ingrese el nombre del curso que desea dictar: ") #=> Se le pide al profesor el nombre del nuevo curso
 
     if cursoADictar != "":
         nuevoCurso = Curso(cursoADictar,carrera_seleccionada) #=> Se crea nueva instancia de la clase Curso con el nombre que ingresa el usuario
@@ -81,14 +80,11 @@ def dictar_curso(usuario):
 
         print("Se ha creado correctamente el curso")
         print(f"Nombre: {nuevoCurso.nombre}")
+        print(f"Código: {nuevoCurso.codigo}")
         print(f"Contraseña: {nuevoCurso.contrasenia_matriculacion}")
 
-    for curso in cursos:
-        print(f"Nombre del curso: {curso.nombre}")
-        print(f"Código: {curso.codigo}")
-        print(f"Contraseña de matriculación: {curso.contrasenia_matriculacion}")    
-    """ for i, curso in enumerate(cursosDictados, 1):
-            print(f"{i}. {curso.carrera.nombre}") """
+ 
+    
 
 def ver_cursos(usuario):
     cursos_dictados = usuario.cursos  # Método para obtener cursos dictados por el profesor.
@@ -98,7 +94,7 @@ def ver_cursos(usuario):
         print("No has creado ningún curso.")
     else:
         print("Cursos que has dictado:")
-        for i, curso in enumerate(cursos_dictados, 1):
+        for i, curso in enumerate(cursos_dictados, 1): # Se enumeran los cursos dictados
             print(f"{i}. {curso.nombre}")
         
         while True:
@@ -112,7 +108,7 @@ def ver_cursos(usuario):
                     respuestaProf = input("Desea agregar un archivo adjunto? - Ingrese 'si' o 'no' ") # Validación para subir un archivo
 
                     if respuestaProf.lower() == "si":
-                        agregar_archivo(curso)
+                        agregar_archivo(curso) 
                         break
                     elif respuestaProf.lower() == "no":
                         break
@@ -127,17 +123,15 @@ def ver_cursos(usuario):
                 print("Opción no válida. Por favor, ingrese un número válido.")
 
 
-def agregar_archivo(curso):
+def agregar_archivo(curso): #=> Esta funcion es la que agrega archivos al curso, toma como parámetro el Curso.
 
     print("----AGREGAR ARCHIVO----")
     nombre_archivo = input("Ingrese nombre del archivo : ")
     formato_archivo = input("Ingrese formato del archivo : ")
 
-    archivo = Archivo(nombre_archivo,formato_archivo)
+    archivo = Archivo(nombre_archivo,formato_archivo) #=> Se crea instancia de la clase Archivo
 
-
-
-    curso.nuevo_archivo(archivo)
+    curso.nuevo_archivo(archivo) #=> Se llama al método nuevo_archivo de la clase Archivo.
 
     print("----Archivo ingresado con éxito!!----")
 

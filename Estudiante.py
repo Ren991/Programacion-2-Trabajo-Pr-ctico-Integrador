@@ -37,15 +37,13 @@ class Estudiante(Usuario):
     
     @property
     def cursos(self) -> list:
-        return self.__cursos
-    
+        return self.__cursos    
 
     def matricular_en_curso(self, curso) -> None:
         self.cursos.append(curso)
 
     def desmatricular_de_curso(self, curso) -> None:    
-        self.cursos.remove(curso)
-       
+        self.cursos.remove(curso)       
 
 
 

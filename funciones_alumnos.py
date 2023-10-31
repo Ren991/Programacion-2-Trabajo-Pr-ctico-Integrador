@@ -85,7 +85,7 @@ def desmatricular_de_curso(usuario):
         return  # Salir de la función si no está matriculado en ningún curso
     print("Cursos en los que estás matriculado:")
     for i, curso in enumerate(usuario.cursos, 1):
-        print(f"{i}. {curso}")
+        print(f"{i}. {curso.nombre}")
     while True:
         cursoIngresado = input("Ingrese el número del curso del que desea desmatricularse: ")
         if cursoIngresado.isdigit():
@@ -93,7 +93,7 @@ def desmatricular_de_curso(usuario):
             if 1 <= cursoIngresado <= len(usuario.cursos):
                 curso_seleccionado = usuario.cursos[cursoIngresado - 1]
                 usuario.desmatricular_de_curso(curso_seleccionado) # => Se llama al método del objeto Estudiante para desmatricularse de curso.
-                print(f"Te has desmatriculado de {curso_seleccionado}.")                
+                print(f"Te has desmatriculado de {curso_seleccionado.nombre}.")                
                 break
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
@@ -105,11 +105,11 @@ def mostrar_archivos_de_curso(curso):
     # Verificar si el curso tiene archivos
     arrayArchivos = curso.archivos
     archivos_ordenados = sorted(arrayArchivos, key=lambda archivo: archivo.fecha)
-    if arrayArchivos:
+    if arrayArchivos: #=> 
         print("Archivos del curso:")
-        for archivo in arrayArchivos:
+        for archivo in archivos_ordenados:
             if hasattr(archivo, 'formato'):
-                print(f"Nombre del archivo: {archivo.nombre}, Formato: {archivo.formato}")
+                print(f"Nombre del archivo: {archivo.nombre}, Formato: {archivo.formato} , Fecha: {archivo.fecha}")
             else:
                 print(f"El objeto {archivo} no tiene un atributo 'formato'.")
     else:
@@ -117,24 +117,23 @@ def mostrar_archivos_de_curso(curso):
 
 
 def mostrar_cursos(usuario):
-    cursos_matriculados = usuario.cursos
+    cursos_matriculados = usuario.cursos #=> En cursos_matriculados se guardan los cursos en los que el usuario se matriculó
 
-    
     if not cursos_matriculados:
         print("No estás matriculado en ningún curso.")
     else:
         print("Cursos en los que estás matriculado:")
-        for i, curso in enumerate(cursos_matriculados, 1):
+        for i, curso in enumerate(cursos_matriculados, 1): #=> Se enumeran los cursos
             print(f"{i}. {curso.nombre}")
 
         while True:
             curso_info = input("Ingrese el número del curso al que desea ver (0 para salir): ")
-            if curso_info.isdigit():
+            if curso_info.isdigit(): #=> isDigit es un método que retorna true si el valor (en este caso curso_info) es número
                 curso_seleccionado = int(curso_info)
                 if 1 <= curso_seleccionado <= len(cursos_matriculados):
-                    curso = cursos_matriculados[curso_seleccionado - 1]
+                    curso = cursos_matriculados[curso_seleccionado - 1] #=> en curso se guarda el curso seleccionado. Tomando el indice curso_seleccionado -1
                     print(f"Nombre: {curso.nombre}")
-                    mostrar_archivos_de_curso(curso)  
+                    mostrar_archivos_de_curso(curso)  #=> Funcion que muestra los archivos 
                 elif curso_seleccionado == 0:
                     break
                 else:

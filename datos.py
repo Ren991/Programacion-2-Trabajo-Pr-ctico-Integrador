@@ -16,42 +16,9 @@ profesores = [ # => Se Crean 2 Objetos de la clase profesores
     Profesor("Mercedes","Valloni","m@v","m123","ingeniera","2012"),
     Profesor("Prueba","Profesor2","p@p","p123","Tecnico quimico","2022")
 ]
-cursos = [
+cursos = [ #=> Se crea vacío. "...No se cuentan con cursos ni archivos dados de alta al iniciar el sistema..."
 
 ]
-""" cursos= [
-    Curso("Ingles I"),
-    Curso("Ingles II"),
-    Curso("Laboratorio I"),
-    Curso("Laboratorio II"),
-    Curso("Programacion I"),
-    Curso("Programacion II"),
-    Curso("Calculo I"),
-    Curso("Precalculo II"),
-    Curso("Algebra I"),
-    Curso("Calculo Matemático II"),
-    Curso("Quimica I"),
-    Curso("Fisica II")
-
-]
-cursosTecProg = [ # => Se Crean 6 Objetos de la clase cursos
-    Curso("Ingles I"),
-    Curso("Ingles II"),
-    Curso("Laboratorio I"),
-    Curso("Laboratorio II"),
-    Curso("Programacion I"),
-    Curso("Programacion II")
-]
-
-cursosIngenierias = [
-    Curso("Calculo I"),
-    Curso("Precalculo II"),
-    Curso("Algebra I"),
-    Curso("Calculo Matemático II"),
-    Curso("Quimica I"),
-    Curso("Fisica II")
-] """
-
 carreras = [ #=> Se crean las Instancias de carreras pero sin cursos inc
     Carrera("Tecnicatura universitaria en programacion",2),
     Carrera("Ingenieria en sistemas",6),

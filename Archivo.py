@@ -1,9 +1,13 @@
 from datetime import date
+import random
+
+
 class Archivo():
     def __init__(self,nombre,formato):
 
         self.__nombre = nombre
-        self.__fecha = date.today()
+        #self.__fecha = date.today()
+        self.__fecha= self.generar_fecha_aleatoria()
         self.__formato = formato
     
     @property
@@ -17,6 +21,14 @@ class Archivo():
     @property
     def formato(self):
         return self.__formato
+    
+    def generar_fecha_aleatoria(self): #=> Se creó este método para simular el ordenamiento de archivos por fecha.
+        # Generar una fecha aleatoria en un rango de años, meses y días deseado
+        year = random.randint(2000, 2023)  # Cambia el rango de años según tus necesidades
+        month = random.randint(1, 12)
+        day = random.randint(1, 28)  # Puedes ajustar esto según tus necesidades
+        
+        return date(year, month, day)
     
     def __str__(self) -> str:
         return f"Nombre: {self.nombre}, Fecha: {self.fecha} , Formato: {self.formato}"

@@ -61,7 +61,7 @@ def ver_todos_cursos():
     if not cursos:
         print("No hay cursos disponibles en este momento.")
     else:
-       cursosOrdenados=sorted(cursos, key=lambda x: x.nombre)
+       cursosOrdenados = sorted(cursos, key=lambda x: x.nombre) #En cursosOrdenados se guarda el array ordenado alfabéticamente
        for curso in cursosOrdenados:
         print(f"Nombre del curso: {curso.nombre}, Carrera: {curso.carrera.nombre}")
 
