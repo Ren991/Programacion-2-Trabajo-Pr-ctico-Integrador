@@ -10,11 +10,11 @@ from funciones_profesores import *
 def autenticar_usuario(opcion):
     #Esta función toma como parámetro la opcion del usuario (1 alumno , 2 profesor)
     #En funcion de eso se le pide el mail y luego valida que ese mail existe en el array de profesores o alumnos dependiendo elección del usuario
-    #Si existe ese mail , se le solicita contraseña y luego se llama al método validar_credenciales.
+    #Si existe ese mail , se le solicita contraseña y luego se llama al método validar_credenciales de la clase Usuario.
 
     email_input = input("Ingresa tu email: ")
 
-    usuario_encontrado = None
+    usuario_encontrado= None
     arrayEstudiantes = estudiantes
     arrayProfesores = profesores
     if opcion == "1":
@@ -29,15 +29,16 @@ def autenticar_usuario(opcion):
                 break
 
     if usuario_encontrado:
+        
         contrasenia_input = input("Ingresa tu contraseña: ")
         if usuario_encontrado.validar_credenciales(email_input, contrasenia_input): # Se valida que el método validar_credenciales retorne true , sino muestra mensaje de error
             
             if opcion == "1":
                 print(f'Bienvenido/a {estudiante.nombre}!')
-                ingresar_como_alumno(usuario_encontrado)# Se llama al submenu de alumno
+                ingresar_como_alumno(usuario_encontrado)# Se llama al submenu de alumno => esta función está en funciones_alumnos.py
             elif opcion == "2":
                 print(f'Bienvenido/a {profesor.nombre}!')
-                ingresar_como_profesor(usuario_encontrado)# Se llama al submenu de profesor
+                ingresar_como_profesor(usuario_encontrado)# Se llama al submenu de profesor => esta función está en funciones_profesores.py
         else:
             print("Error de ingreso. Credenciales inválidas.")
     else:
@@ -50,8 +51,10 @@ def autenticar_usuario(opcion):
                     break  # Sale del bucle si la opción es válida (1)
                
                 else:
+                    print("Código Incorrecto, regresando al menu principal... ")
                     break
         else:
+            
             print("Correo electrónico no encontrado. Debe darse de alta en alumnado.")
 
         

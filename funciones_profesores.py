@@ -17,13 +17,7 @@ def registrar_nuevo_profesor(email_input):
 
     nuevo_profesor = Profesor(nombre,apellido,email_input,contrasenia,titulo,anio) #=> Se crea instancia de profesor.
 
-    profesores.append(nuevo_profesor) #=> Se apendea al array de profesores de datos.py
-    
-    for profesor in profesores:
-        print(f"Nombre: {profesor.nombre} {profesor.apellido}")
-        print(f"Email: {profesor.email}")
-        print(f"Contraseña: {profesor.contrasenia}")
-        print(f"Título: {profesor.titulo}")
+    profesores.append(nuevo_profesor) #=> Se apendea al array de profesores de datos.py   
 
 
 #----------------FUNCIONES PROFESORES------------------------------------------------------------------------------------#

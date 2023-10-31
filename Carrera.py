@@ -3,8 +3,7 @@ class Carrera():
         self.__nombre= nombre
         self.__cant_anios= cant_anios
         self.__cursos = cursos if cursos is not None else []
-        self.__estudiantes = []
-        
+        self.__estudiantes = []       
 
     
     @property
@@ -24,11 +23,11 @@ class Carrera():
         return self.__estudiantes
     
     def get_cantidad_materias(self) -> int:
-        return None
+        return len(self.cursos)
     
     def __str__(self) -> str:
         return f"Nombre: {self.nombre}, Cantidad de años : {self.cant_anios}, Estudiantes: {self.estudiantes}"
     
     
-        
+
         

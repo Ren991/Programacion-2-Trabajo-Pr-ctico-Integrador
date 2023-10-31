@@ -26,21 +26,4 @@ carreras = [ #=> Se crean las Instancias de carreras pero sin cursos inc
     Carrera("ingenieria quimica",6)
 ]
 
-for carrera in carreras:
-    print(f"Carrera: {carrera.nombre} (Duración: {carrera.cant_anios} años)")
-    print("Cursos:")
-    for curso in carrera.cursos:
-        print(f"  - {curso.nombre}")
-    print("\n")
-
-for estudiante in estudiantes:
-    print(f'Estudiante: {estudiante.nombre} {estudiante.apellido}')
-    print(f'Email: {estudiante.email}')
-    print(f'Legajo: {estudiante.legajo}')
-    print(f'Año de inscripción: {estudiante.anio_inscripcion_carrera}')
-    if estudiante.carrera:
-        print(f'Carrera inscripta: {estudiante.carrera}')
-    else:
-        print('No inscrito en ninguna carrera')
-    print('\n')
 

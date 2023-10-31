@@ -17,9 +17,7 @@ def ingresar_como_alumno(usuario):# tomo como parametro el Objeto Estudiante
         print("2. Desmatricularse a un curso")
         print("3. Ver curso")
         print("4. Volver al menú principal")
-        print("Cursos del usuario:")
-        for curso in usuario.cursos:
-            print(curso.nombre)
+        print("Cursos del usuario:")        
 
         opcion = input("Seleccione una opción: ")
 
@@ -40,43 +38,45 @@ def matricular_a_curso(usuario):
     
     cursos_disponibles = cursos 
 
-    print("Cursos disponibles:")
-    for i, curso in enumerate(cursos_disponibles, 1): #Enumerate es un método , crea una tupla para cada elemento, con el índice y el nombre.
-        print(f"{i} {curso.nombre} - {curso.carrera.nombre} ") # Muestra el índice y el nombre
+    if len(cursos_disponibles) > 0: # => Se valida que haya al menos un curso en el que el usuario se pueda matricular.
+        print("Cursos disponibles:")
+        for i, curso in enumerate(cursos_disponibles, 1): #Enumerate es un método , crea una tupla para cada elemento, con el índice y el nombre.
+            print(f"{i} {curso.nombre} - {curso.carrera.nombre} ") # Muestra el índice y el nombre
 
 
 
-    while True:
-        cursoIngresado = input("Ingrese el número del curso al que desea matricularse: ")
-        if cursoIngresado.isdigit(): # isDigit retorna true en caso de que sea numero y en caso de que sea string devuelve false.
-            cursoIngresado = int(cursoIngresado)
-            if 1 <= cursoIngresado <= len(cursos_disponibles): # valida que el numero que ingrese el usuario este entre el 1 y el último num de curso.
-                curso_seleccionado = cursos_disponibles[cursoIngresado - 1]
-                
-                if curso_seleccionado.nombre in usuario.cursos:
-                    # El usuario ya se matriculo en ese curso
-                    print(f"Ya estás matriculado en {curso_seleccionado.nombre}.")
+        while True:
+            cursoIngresado = input("Ingrese el número del curso al que desea matricularse: ")
+            if cursoIngresado.isdigit(): # isDigit retorna true en caso de que sea numero y en caso de que sea string devuelve false.
+                cursoIngresado = int(cursoIngresado)
+                if 1 <= cursoIngresado <= len(cursos_disponibles): # valida que el numero que ingrese el usuario este entre el 1 y el último num de curso.
+                    curso_seleccionado = cursos_disponibles[cursoIngresado - 1]
+                    
+                    if curso_seleccionado.nombre in usuario.cursos: #=> Se valida si el usuario ya está matriculado al curso.
+                        # El usuario ya se matriculo en ese curso
+                        print(f"Ya estás matriculado en {curso_seleccionado.nombre}.")
+                    else:
+                        # El usuario no está matriculado en el curso
+                        if usuario.carrera == curso_seleccionado.carrera.nombre: #=> Se valida que la carrera del usuario y la carrera a la que pertenece el curso coincidan
+                            contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
+                            
+                            if contra_user == curso_seleccionado.contrasenia_matriculacion: # => Se valida contraseña que ingresa el alumno con la contraseña del curso.
+                                #usuario.matricular_en_curso(curso_seleccionado.nombre)
+                                usuario.matricular_en_curso(curso_seleccionado)# => Método para matricular el usuario a un curso
+                                
+                                print("Se ha registrado correctamente su matriculación")
+                            else:
+                                print("Contraseña incorrecta")
+                        else: # => Si la carrera del usuario y la carrera del curso no coinciden se muestra msj de error
+                            print(f"No se puede inscribir a ese curso porque no pertenece a: {usuario.carrera}")
+
+                    break
                 else:
-                    # El usuario no está matriculado en el curso
-                    if usuario.carrera == curso_seleccionado.carrera.nombre: #=> Se valida que la carrera del usuario y la carrera a la que pertenece el curso coincidan
-                        print(f"No estás matriculado en {curso_seleccionado.nombre}.")
-                        contra_user = input(f"Ingrese contraseña para matricularse a {curso_seleccionado.nombre} : ")     
-                        
-                        if contra_user == curso_seleccionado.contrasenia_matriculacion:
-                            #usuario.matricular_en_curso(curso_seleccionado.nombre)
-                            usuario.matricular_en_curso(curso_seleccionado)# => Método para matricular el usuario a un curso
-                             
-                            print("Se ha registrado correctamente su matriculación")
-                        else:
-                            print("Contraseña incorrecta")
-                    else: # => Si la carrera del usuario y la carrera del curso no coinciden se muestra msj de error
-                        print(f"No se puede inscribir a ese curso porque no pertenece a: {usuario.carrera}")
-
-                break
+                    print("Opción no válida. Por favor, ingrese un número válido.")
             else:
                 print("Opción no válida. Por favor, ingrese un número válido.")
-        else:
-            print("Opción no válida. Por favor, ingrese un número válido.")
+    else:
+        print("No se encuentra ningún curso disponible en este momento")
 
 def desmatricular_de_curso(usuario):
 
@@ -133,7 +133,7 @@ def mostrar_cursos(usuario):
                 if 1 <= curso_seleccionado <= len(cursos_matriculados):
                     curso = cursos_matriculados[curso_seleccionado - 1] #=> en curso se guarda el curso seleccionado. Tomando el indice curso_seleccionado -1
                     print(f"Nombre: {curso.nombre}")
-                    mostrar_archivos_de_curso(curso)  #=> Funcion que muestra los archivos 
+                    mostrar_archivos_de_curso(curso)  #=> Funcion que muestra los archivos ordenados cronológicamente.
                 elif curso_seleccionado == 0:
                     break
                 else:

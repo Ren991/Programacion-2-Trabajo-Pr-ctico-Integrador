@@ -22,7 +22,6 @@ class Estudiante(Usuario):
     def legajo(self, nuevo_legajo):
         self.__legajo = nuevo_legajo
 
-
     @property
     def anio_inscripcion_carrera(self):
         return self.__anio_inscripcion_carrera
