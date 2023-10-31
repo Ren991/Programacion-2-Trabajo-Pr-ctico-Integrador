@@ -10,17 +10,34 @@ class Carrera():
     def nombre(self):
         return self.__nombre
     
+    @nombre.setter
+    def nombre(self, nuevo_nombre) ->None:
+        self.__nombre = nuevo_nombre
+    
     @property
     def cant_anios(self):
         return self.__cant_anios
+    
+    @cant_anios.setter
+    def cant_anios(self,nueva_cant_anios)-> None:
+        self.__cant_anios = nueva_cant_anios
     
     @property
     def cursos(self):
         return self.__cursos
     
+    @cursos.setter
+    def cursos(self,nuevos_cursos)->list:
+        self.__cursos = nuevos_cursos
+    
     @property
     def estudiantes(self):
         return self.__estudiantes
+    
+    @estudiantes.setter
+
+    def estudiantes(self,nuevos_estudiantes)->list:
+        self.__estudiantes = nuevos_estudiantes
     
     def get_cantidad_materias(self) -> int:
         return len(self.cursos)

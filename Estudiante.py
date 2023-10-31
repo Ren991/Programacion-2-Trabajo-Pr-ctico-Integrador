@@ -19,7 +19,7 @@ class Estudiante(Usuario):
         return self.__legajo
     
     @legajo.setter
-    def legajo(self, nuevo_legajo):
+    def legajo(self, nuevo_legajo)->None:
         self.__legajo = nuevo_legajo
 
     @property
@@ -27,16 +27,21 @@ class Estudiante(Usuario):
         return self.__anio_inscripcion_carrera
     
     @anio_inscripcion_carrera.setter
-    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion):
+    def anio_inscripcion_carrera(self, nuevo_anio_inscripcion)->None:
         self.__anio_inscripcion_carrera = nuevo_anio_inscripcion
 
     @property
     def carrera(self):
-        return self.__carrera     
+        return self.__carrera    
+
+    @carrera.setter
+    def carrera(self, nueva_carrera) -> None:
+        self.__carrera = nueva_carrera 
     
     @property
     def cursos(self) -> list:
         return self.__cursos    
+    
 
     def matricular_en_curso(self, curso) -> None:
         self.cursos.append(curso)

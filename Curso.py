@@ -11,23 +11,37 @@ class Curso():
         self.__contrasenia_matriculacion = self.__generar_contrasenia()        
         self.__codigo = Curso.obtener_siguiente_codigo()
         self.__carrera = carrera
-        self.__archivos = [] 
-        
+        self.__archivos = []         
 
     @property
     def nombre(self):
         return self.__nombre
+    
+    @nombre.setter
+    def nombre(self , nuevo_nombre):
+        self.__nombre = nuevo_nombre
+
     @property
     def contrasenia_matriculacion(self):
         return self.__contrasenia_matriculacion
     
+    @contrasenia_matriculacion.setter
+    def contrasenia_matriculacion(self,nueva_contrasenia_matriculacion)->str:
+        self.__contrasenia_matriculacion = nueva_contrasenia_matriculacion
+    
     @property
     def codigo(self):
         return self.__codigo
+    @codigo.setter
+    def codigo(self,nuevo_codigo)->str:
+        self.__codigo = nuevo_codigo
     
     @property
     def carrera(self):
         return self.__carrera
+    @carrera.setter
+    def carrera(self,nueva_carrera)->str:
+        self.__carrera = nueva_carrera    
 
     @property
     def archivos(self):
@@ -35,16 +49,11 @@ class Curso():
     
     @archivos.setter
     def archivos(self, nuevo_archivo):
-        self.__archivos = nuevo_archivo
-    
-    @nombre.setter
-    def nombre(self , nuevo_nombre):
-        self.__nombre = nuevo_nombre
+        self.__archivos = nuevo_archivo    
 
     @property
     def cantidad_archivos(self):
-        return len(self.__archivos)
-    
+        return len(self.__archivos)        
     
     def nuevo_archivo(self,archivo):
         self.__archivos.append(archivo)

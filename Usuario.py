@@ -31,12 +31,16 @@ class Usuario(ABC):
     
 
     @nombre.setter
-    def nombre(self, nombre):
+    def nombre(self, nombre)->str:
         self._nombre = nombre
 
     @apellido.setter
-    def apellido(self, apellido):
+    def apellido(self, apellido)->str:
         self._apellido = apellido
+
+    @email.setter
+    def email(self,nuevo_email)->str:
+        self.__email = nuevo_email
 
     @contrasenia.setter
     def contrasenia(self, nueva_contrasenia):

@@ -3,7 +3,7 @@ import random
 
 
 class Archivo():
-    def __init__(self,nombre,formato):
+    def __init__(self,nombre,formato)->None:
 
         self.__nombre = nombre        
         self.__fecha= self.generar_fecha_aleatoria()
@@ -13,13 +13,28 @@ class Archivo():
     def nombre(self):
         return self.__nombre
     
+    @nombre.setter
+    def nombre(self, nuevo_nombre)-> None:
+        self.__nombre = nuevo_nombre
+
+    
     @property
     def fecha(self):
         return self.__fecha
     
+    @fecha.setter
+    def fecha(self,nueva_fecha)->None:
+        return self.__nueva_fecha
+    
+    
     @property
     def formato(self):
         return self.__formato
+    
+    @formato.setter
+    def formato(self,nuevo_formato)->None:
+        self.__formato = nuevo_formato 
+
     
     def generar_fecha_aleatoria(self): #=> Se creó este método para simular el ordenamiento de archivos por fecha.
         # Generar una fecha aleatoria en un rango de años, meses y días deseado
